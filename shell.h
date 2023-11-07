@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <unistd.h>
 #include <stdio.h>
@@ -13,4 +13,5 @@ int _putchar(char c);
 void _chckarg(const char *format, int char_len, va_list arg_list);
 int print_int(va_list a_list);
 
-#endif /* MAIN_H */
+
+#endif /* SHELL_H */
