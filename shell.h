@@ -6,8 +6,10 @@
 #include <stdarg.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
 
-void display_blinker(void);
+char *_strcpy(char *src, char *dest);
+void print_promt(void);
 int _printf(const char *format, ...);
 int _strlen(char *s);
 int _putchar(char c);
