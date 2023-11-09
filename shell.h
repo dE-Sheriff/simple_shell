@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+void _execmd(char **sptr);
+void free_dylloc(char **pptr, int num_tem);
 char *_strcpy(char *src, char *dest);
 void print_promt(void);
 int _printf(const char *format, ...);
