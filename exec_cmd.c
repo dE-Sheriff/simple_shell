@@ -6,15 +6,15 @@
  * Return: Void
 */
 
-void _execmd(char **sptr)
+void _execmd(char **argv)
 {
-	char *cmd = NULL, *a_cmd;
+	char *cmd = NULL, *a_cmd = NULL;
 
-	if (sptr)
+	if (argv)
 	{
-		cmd = sptr[0];
+		cmd = argv[0];
 		a_cmd = _get_cpath(cmd);
-		if (execve(a_cmd, sptr, NULL) == -1)
+		if (execve(a_cmd, argv, NULL) == -1)
 			perror("Error: execve failed");
 	}
 }

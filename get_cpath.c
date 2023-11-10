@@ -45,4 +45,5 @@ char *_get_cpath(char *cmd)
 			return (cmd);
 		return (NULL);
 	}
+	return (NULL);
 }

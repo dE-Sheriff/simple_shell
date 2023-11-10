@@ -8,13 +8,13 @@
 
 char *_getenv(const char *name)
 {
-	extern char **env_var;
+	extern char **environ;
 	int i = 0;
 	char *env_token;
 
-	while (env_var[i])
+	while (environ[i])
 	{
-		env_token = strtok(env_var[i], "=");
+		env_token = strtok(environ[i], "=");
 		if (_strcmp(env_token, (char *)name) == 0)
 		{
 			return (strtok(NULL, "="));
