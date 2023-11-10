@@ -7,10 +7,10 @@
 
 int main(void)
 {
-	char *inputptr, *copy_inputptr, *token;
-	char **argv;
+	char *inputptr = NULL, *copy_inputptr, *token = NULL;
+	char **argv = NULL;
 	const char *delim = " \0";
-	int num_tok = 0, i, counter;
+	int num_tok = 0, i;
 	bool receive_cmd = true;
 	size_t x = 0;
 	ssize_t num_charrd;
@@ -25,14 +25,11 @@ int main(void)
 			exit(EXIT_FAILURE);
 		}
 
-		/* Test if input was received, stored and pointed to*/
-		_printf("%s\n", inputptr);
-
 		/* copy input before using strtok*/
-		copy_inputptr = malloc(sizeof(char) * num_charrd);
+		copy_inputptr = malloc(sizeof(char) * num_charrd + 1);
 		if (!copy_inputptr)
 			return (-1);
-		_strcpy(inputptr, copy_inputptr);
+		_strcpy(copy_inputptr, inputptr);
 
 		/* use strtok function*/
 		/* make this a function of its own*/
@@ -50,21 +47,15 @@ int main(void)
 		token = strtok(copy_inputptr, delim);
 		for (i =0; token != NULL; i++)
 		{
-			argv[i] = malloc(sizeof(char) * _strlen(token));
+			argv[i] = malloc(sizeof(char) * _strlen(token) + 1);
 			_strcpy(argv[i], token);
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
-		
-		/* Test code thus far by printing each stored token*/
-		for (counter = 0; counter < num_tok - 1; counter++)
-		{
-			_printf("%s\n", argv[counter]);
-		}
+		_execmd(argv);
 
-		free(argv);
-		free(inputptr);
 		free(copy_inputptr);
+		free_dylloc(argv, num_tok);
 	}
 	return (0);
 }

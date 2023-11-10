@@ -29,7 +29,7 @@ char *_get_cpath(char *cmd)
 			_strcat(file_pth, cmd);
 			_strcat(file_pth, "\0");
 			/*testing if the file path actually exists*/
-			if (stat(file_pth, &buffer) != -1)
+			if (stat(file_pth, &buffer) == 0)
 			{
 				free(pth_copy);
 				return (file_pth);
@@ -43,6 +43,11 @@ char *_get_cpath(char *cmd)
 		free(pth_copy);
 		if (stat(cmd, &buffer) != -1)
 			return (cmd);
+		else
+		{
+			if (file_pth != NULL)
+				free(file_pth);
+		}
 		return (NULL);
 	}
 	return (NULL);
