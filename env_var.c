@@ -15,7 +15,7 @@ char *_getenv(const char *name)
 	while (env_var[i])
 	{
 		env_token = strtok(env_var[i], "=");
-		if (strcmp(env_token, name) == 0)
+		if (_strcmp(env_token, name) == 0)
 		{
 			return (strtok(NULL, "="));
 		}
