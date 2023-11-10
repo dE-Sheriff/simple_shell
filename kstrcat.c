@@ -1,11 +1,11 @@
 #include "shell.h"
 
  /**
- * _strcat - concatenates two strings
- * @dest: input value
- * @src: input value
- * Return: char
- */
+  * _strcat - concact strings
+  * @dest: input value
+  * @src: input value
+  * Return: char
+  */
 
 char *_strcat(char *dest, char *src)
 {

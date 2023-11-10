@@ -13,7 +13,6 @@ char *_get_cpath(char *cmd)
 	struct stat buffer;
 
 	pth = _getenv("PATH");
-
 	if (pth)
 	{
 		pth_copy = _strdup(pth);
@@ -21,16 +20,29 @@ char *_get_cpath(char *cmd)
 		cmd_len = _strlen(cmd);
 		/*down the path variable and get all the directory available*/
 		pth_token = strtok(pth_copy, ":");
-
 		while (pth_token != NULL)
 		{
 			dir_len = _strlen(pth_token);
 			file_pth = malloc(cmd_len + dir_len + 2);
-
 			_strcpy(pth_token, file_pth);
 			_strcat(file_pth, "/");
 			_strcat(file_pth, cmd);
 			_strcat(file_pth, "\0");
 			/*testing if the file path actually exists*/
+			if (stat(file_pth, &buffer) != -1)
+			{
+				free(pth_copy);
+				return (file_pth);
+			}
+			else
+			{
+				free(file_pth);
+				pth_token = strtok(NULL, ":");
+			}
 		}
+		free(pth_copy);
+		if (stat(cmd, &buffer) != -1)
+			return (cmd);
+		return (NULL);
+	}
 }

@@ -8,12 +8,13 @@
 
 void _execmd(char **sptr)
 {
-	const char *cmd = NULL;
+	char *cmd = NULL, *a_cmd;
 
 	if (sptr)
 	{
 		cmd = sptr[0];
-		if (execve(cmd, sptr, NULL) == -1)
+		a_cmd = _get_cpath(cmd);
+		if (execve(a_cmd, sptr, NULL) == -1)
 			perror("Error: execve failed");
 	}
 }
