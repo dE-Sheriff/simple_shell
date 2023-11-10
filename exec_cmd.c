@@ -2,7 +2,7 @@
 
 /**
  * _execmd - executes command inteden by user
- * @sptr: array of tokenized arguments
+ * @argv: array of tokenized arguments
  * Return: Void
 */
 

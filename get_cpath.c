@@ -24,7 +24,7 @@ char *_get_cpath(char *cmd)
 		{
 			dir_len = _strlen(pth_token);
 			file_pth = malloc(cmd_len + dir_len + 2);
-			_strcpy(pth_token, file_pth);
+			_strcpy(file_pth, pth_token);
 			_strcat(file_pth, "/");
 			_strcat(file_pth, cmd);
 			_strcat(file_pth, "\0");

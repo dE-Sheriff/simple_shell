@@ -21,7 +21,7 @@ int main(void)
 		num_charrd = getline(&inputptr, &x, stdin);
 		if (num_charrd == -1)
 		{
-			_printf("Exiting shell...\n");
+			_printf("Closing shell...\n");
 			exit(EXIT_FAILURE);
 		}
 
@@ -29,7 +29,7 @@ int main(void)
 		copy_inputptr = malloc(sizeof(char) * num_charrd);
 		if (!copy_inputptr)
 			return (-1);
-		_strcpy(inputptr, copy_inputptr);
+		_strcpy(copy_inputptr, inputptr);
 
 		/* use strtok function*/
 		/* make this a function of its own*/
@@ -53,7 +53,7 @@ int main(void)
 				if (argv[i] == NULL)
 					exit(EXIT_FAILURE);
 			}
-			_strcpy(token, argv[i]);
+			_strcpy(argv[i], token);
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
