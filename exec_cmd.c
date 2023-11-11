@@ -8,13 +8,16 @@
 
 void _execmd(char **argv)
 {
-	char *cmd;
+	char *cmd = NULL, *envv[] = {"NULL"}, *a_cmd = NULL;
+	int ret;
 
 	printf("Before execve\n");
 	if (argv)
 	{
 		cmd = argv[0];
-		if (execve(cmd, argv, NULL) == -1)
-			perror("Error:");
+		a_cmd = _get_cpath(cmd);
+		ret = execve(cmd, argv, envv);
+		if (ret == -1)
+			perror("Error");
 	}
 }

@@ -43,11 +43,6 @@ char *_get_cpath(char *cmd)
 		free(pth_copy);
 		if (stat(cmd, &buffer) != -1)
 			return (cmd);
-		else
-		{
-			if (file_pth != NULL)
-				free(file_pth);
-		}
 		return (NULL);
 	}
 	return (NULL);

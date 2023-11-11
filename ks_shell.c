@@ -47,15 +47,15 @@ int main(void)
 		token = strtok(copy_inputptr, delim);
 		for (i =0; token != NULL; i++)
 		{
-			argv[i] = malloc(sizeof(char) * _strlen(token) + 1);
+			argv[i] = malloc(sizeof(char) * _strlen(token));
 			_strcpy(argv[i], token);
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
 		_execmd(argv);
 
+		free(inputptr);
 		free(copy_inputptr);
-		free_dylloc(argv, num_tok);
 	}
 	return (0);
 }
