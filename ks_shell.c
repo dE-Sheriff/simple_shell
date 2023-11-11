@@ -9,7 +9,7 @@ int main(void)
 {
 	char *inputptr = NULL, *copy_inputptr, *token = NULL;
 	char **argv = NULL;
-	const char *delim = " \0";
+	const char *delim = " ";
 	int num_tok = 0, i;
 	bool receive_cmd = true;
 	size_t x = 0;
