@@ -21,14 +21,17 @@ int main(void)
 		num_charrd = getline(&inputptr, &x, stdin);
 		if (num_charrd == -1)
 		{
-			printf("Exiting shell...\n");
-			exit(EXIT_FAILURE);
+			_printf("Exiting shell...\n");
+			return (-1);
 		}
 
 		/* copy input before using strtok*/
-		copy_inputptr = malloc(sizeof(char) * num_charrd + 1);
+		copy_inputptr = malloc(sizeof(char) * num_charrd);
 		if (!copy_inputptr)
+		{
+			perror("memory allocation error");
 			return (-1);
+		}
 		_strcpy(copy_inputptr, inputptr);
 
 		/* use strtok function*/
@@ -53,9 +56,10 @@ int main(void)
 		}
 		argv[i] = NULL;
 		_execmd(argv);
-
-		free(inputptr);
-		free(copy_inputptr);
 	}
+	
+	free(inputptr);
+	free(copy_inputptr);
+
 	return (0);
 }

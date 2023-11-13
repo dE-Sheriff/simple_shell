@@ -8,18 +8,21 @@
 
 void _execmd(char **argv)
 {
-	char *cmd = NULL, *a_cmd = NULL, *envv[] = {NULL};
+	char *cmd = NULL, *a_cmd = NULL;
 	int ret;
 
-	printf("Before execve\n");
+	_printf("Before execve\n");
 	if (argv)
 	{
 		cmd = argv[0];
 		a_cmd = _get_cpath(cmd);
-		ret = execve(a_cmd, (char **)argv, envv);
-		if (ret == -1)
-			perror("Error");
+		if (a_cmd != NULL)
+		{
+			ret = execve(a_cmd, argv, NULL);
+			if (ret == -1)
+				perror("Error");
+		}
 	}
-	else
-		printf("not accessing argv\n");
+		else
+			_printf("not accessing argv\n");
 }
