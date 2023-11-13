@@ -68,14 +68,7 @@ int main(int argc, char **argv)
 		}
 		if (inputptr[num_charrd - 1] == '\n')
 			inputptr[num_charrd - 1] = '\0';
-		/*create a child pid*/
-		baby_pid = fork();
-		if (baby_pid == -1)
-		{
-			perror("child  forking failed");
-			exit(EXIT_FAILURE);
-		}
-		if (baby_pid == 0)
+		
 		/* copy input before using strtok*/
 		xtra = 1;
 		copy_inputptr = allchrptr((int) num_charrd, xtra);
