@@ -9,17 +9,19 @@
 void _execmd(char **argv)
 {
 	char *cmd = NULL, *a_cmd = NULL;
+	char *envv[] = {NULL};
 	int ret;
 
+	printf("Before execve\n");
 	if (argv)
 	{
-		cmd = argv[0];
+		cmd = (char *)argv[0];
 		a_cmd = _get_cpath(cmd);
-		ret = execve(a_cmd, argv, NULL);
+		_printf("%s\n", a_cmd);
+
+		ret = execve(a_cmd, (char **)argv, envv);
 		
 		if (ret == -1)
 				perror("Error");
 	}
-		else
-			_printf("not accessing argv\n");
 }

@@ -5,16 +5,16 @@
  * Return: int
 */
 
-int main(int ac, char **argv)
+int main(int argc, char **argv)
 {
 	char *inputptr = NULL, *copy_inputptr, *token = NULL;
-	const char *delim = " ";
+	const char *delim = " \n";
 	int num_tok = 0, i;
 	bool receive_cmd = true;
 	size_t x = 0;
 	ssize_t num_charrd;
 
-	(void)ac;
+	(void)argc;
 	
 	while (receive_cmd)
 	{
@@ -23,17 +23,16 @@ int main(int ac, char **argv)
 		if (num_charrd == -1)
 		{
 			_printf("Exiting shell...\n");
-			return (-1);
+			exit(EXIT_FAILURE);
 		}
 
 		/* copy input before using strtok*/
-		copy_inputptr = malloc(sizeof(char) * num_charrd);
+		copy_inputptr = malloc(sizeof(char) * num_charrd + 1);
 		if (!copy_inputptr)
 		{
-			perror("memory allocation error");
 			return (-1);
 		}
-		strcpy(copy_inputptr, inputptr);
+		_strcpy(copy_inputptr, inputptr);
 
 		/* use strtok function*/
 		/* make this a function of its own*/
@@ -50,27 +49,27 @@ int main(int ac, char **argv)
 		argv = malloc(sizeof(char *) * num_tok);
 		if (!argv)
 		{
-			perror("merory allocation error");
-			return (-1);
+			perror("Error: argv Merory allocation error");
+			exit(EXIT_FAILURE);
 		}
 		token = strtok(copy_inputptr, delim);
 		for (i =0; token != NULL; i++)
 		{
 			argv[i] = malloc(sizeof(char) * strlen(token));
-			strcpy(argv[i], token);
+			if (!argv[i])
+			{
+				perror("Error: argv[i]Memory allocation error");
+				exit(EXIT_FAILURE);
+			}
+			_strcpy(argv[i], token);
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
 		_execmd(argv);
-
-		for (i = 0; i < num_tok - 1; i++)
-		{
-			free(argv[i]);
-		}
-		free(argv);
-		free(inputptr);
-		free(copy_inputptr);
 	}
+
+	free_dylloc(argv, num_tok);
+	free(copy_inputptr);
 
 	return (0);
 }
