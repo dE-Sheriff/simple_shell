@@ -48,6 +48,11 @@ int main(int ac, char **argv)
 		/* alocate a memory that point to token pointers*/
 		/* make a stand alone funtion*/
 		argv = malloc(sizeof(char *) * num_tok);
+		if (!argv)
+		{
+			perror("merory allocation error");
+			return (-1);
+		}
 		token = strtok(copy_inputptr, delim);
 		for (i =0; token != NULL; i++)
 		{
