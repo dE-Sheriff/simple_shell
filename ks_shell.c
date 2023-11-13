@@ -5,15 +5,16 @@
  * Return: int
 */
 
-int main(void)
+int main(int ac, char **argv)
 {
 	char *inputptr = NULL, *copy_inputptr, *token = NULL;
-	char **argv = NULL;
 	const char *delim = " ";
 	int num_tok = 0, i;
 	bool receive_cmd = true;
 	size_t x = 0;
 	ssize_t num_charrd;
+
+	(void)ac;
 	
 	while (receive_cmd)
 	{
@@ -32,7 +33,7 @@ int main(void)
 			perror("memory allocation error");
 			return (-1);
 		}
-		_strcpy(copy_inputptr, inputptr);
+		strcpy(copy_inputptr, inputptr);
 
 		/* use strtok function*/
 		/* make this a function of its own*/
@@ -50,8 +51,8 @@ int main(void)
 		token = strtok(copy_inputptr, delim);
 		for (i =0; token != NULL; i++)
 		{
-			argv[i] = malloc(sizeof(char) * _strlen(token));
-			_strcpy(argv[i], token);
+			argv[i] = malloc(sizeof(char) * strlen(token));
+			strcpy(argv[i], token);
 			token = strtok(NULL, delim);
 		}
 		argv[i] = NULL;
