@@ -57,10 +57,15 @@ int main(int ac, char **argv)
 		}
 		argv[i] = NULL;
 		_execmd(argv);
+
+		for (i = 0; i < num_tok - 1; i++)
+		{
+			free(argv[i]);
+		}
+		free(argv);
+		free(inputptr);
+		free(copy_inputptr);
 	}
-	
-	free(inputptr);
-	free(copy_inputptr);
 
 	return (0);
 }
