@@ -11,13 +11,17 @@ int main(int argc, char **argv)
 	const char *delim = " \n";
 	int num_tok = 0, i;
 	bool receive_cmd = true;
+	bool other_cmd = false;
 	size_t x = 0;
 	ssize_t num_charrd;
 
 	(void)argc;
 	
-	while (receive_cmd)
+	while (receive_cmd && !other_cmd)
 	{
+		if (isatty(STDIN_FILENO) == 0)
+			other_cmd = true;
+
 		print_promt();
 		num_charrd = getline(&inputptr, &x, stdin);
 		if (num_charrd == -1)
@@ -25,6 +29,19 @@ int main(int argc, char **argv)
 			_printf("Exiting shell...\n");
 			exit(EXIT_FAILURE);
 		}
+
+		if (inputptr[num_charrd - 1] == '\n')
+			inputptr[num_charrd - 1] = '\0';
+
+		/*create a child pid*/
+		baby_pid = fork();
+		if (baby_pid == -1)
+		{
+			perror("child  forking failed");
+			exit(EXIT_FAILURE);
+		}
+		if (baby_pid == 0)
+
 
 		/* copy input before using strtok*/
 		copy_inputptr = malloc(sizeof(char) * num_charrd + 1);
