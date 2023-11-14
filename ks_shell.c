@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 {
 	char *inputptr = NULL, *copy_inputptr, *token = NULL;
 	const char *delim = " \n";
-	int num_tok = 0, i, xtra;
+	int num_tok = 0, xtra;
 	bool receive_cmd = true, other_cmd = false;
 	size_t x = 0;
 	ssize_t num_charrd;
@@ -68,36 +68,22 @@ int main(int argc, char **argv)
 		}
 		if (inputptr[num_charrd - 1] == '\n')
 			inputptr[num_charrd - 1] = '\0';
-		
-		/* copy input before using strtok*/
+
 		xtra = 1;
 		copy_inputptr = allchrptr((int) num_charrd, xtra);
-		_strcpy(copy_inputptr, inputptr);
+		strcpy(copy_inputptr, inputptr);
 		/* use strtok function*/
-		token = strtok(inputptr, delim);
-		while (token != NULL)
-		{
-			num_tok++;
-			token = strtok(NULL, delim);
-		}
-		num_tok++;
+		num_tok = get_argc(token, inputptr, delim);
 		/* alocate a memory that point to token pointers*/
 		xtra = 0;
 		argv = dal_chrptr((int)num_tok, xtra);
-		token = strtok(copy_inputptr, delim);
-		for (i = 0; token != NULL; i++)
-		{
-			xtra = 0;
-			argv[i] = allchrptr((int)strlen(token), xtra);
-			_strcpy(argv[i], token);
-			token = strtok(NULL, delim);
-		}
-		argv[i] = NULL;
+		argv = arr_argv((char **)argv, token, (char *)copy_inputptr);
 		_execmd(argv);
-	}
 
-	free_dylloc(argv, num_tok);
-	free(copy_inputptr);
+		free_dylloc(argv, num_tok);
+		free(inputptr);
+		free(copy_inputptr);
+	}
 
 	return (0);
 }

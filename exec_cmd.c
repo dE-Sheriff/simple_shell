@@ -37,4 +37,5 @@ void _execmd(char **argv)
 			wait(NULL);
 		}
 	}
+	free(a_cmd);
 }
