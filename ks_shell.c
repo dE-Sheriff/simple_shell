@@ -81,9 +81,7 @@ int main(int argc, char **argv)
 		_execmd(argv);
 
 		free_dylloc(argv, num_tok);
-		free(inputptr);
-		free(copy_inputptr);
 	}
-
+	free(inputptr);
 	return (0);
 }

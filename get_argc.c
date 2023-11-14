@@ -12,13 +12,16 @@ int get_argc(char *token, char *inputptr, const char *delim)
 {
 	int num_tok = 0;
 
+	if (inputptr == NULL)
+		return (0);
+
 	token = strtok(inputptr, delim);
 		while (token != NULL)
 		{
 			num_tok++;
 			token = strtok(NULL, delim);
 		}
-		num_tok++;
+
 		return (num_tok);
 }
 
@@ -39,10 +42,12 @@ char **arr_argv(char **argv, char *token, char *copy_inputptr)
 	for (i = 0; token != NULL; i++)
 	{
 		xtra = 1;
-		argv[i] = allchrptr((int)strlen(token), xtra);
-		strcpy(argv[i], token);
+		argv[i] = allchrptr((int)_strlen(token), xtra);
+		_strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
 	argv[i] = NULL;
+
+	free(copy_inputptr);
 	return (argv);
 }

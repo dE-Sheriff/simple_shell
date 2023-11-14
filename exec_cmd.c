@@ -13,7 +13,6 @@ void _execmd(char **argv)
 	int ret;
 	pid_t baby_pid;
 
-	printf("Before execve\n");
 	if (argv)
 	{
 		cmd = (char *)argv[0];
