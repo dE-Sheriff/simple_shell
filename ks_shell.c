@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 		/* use strtok function*/
 		num_tok = get_argc(token, inputptr, delim);
 		/* alocate a memory that point to token pointers*/
-		xtra = 0;
+		xtra = 1;
 		argv = dal_chrptr((int)num_tok, xtra);
 		argv = arr_argv((char **)argv, token, (char *)copy_inputptr);
 		_execmd(argv);
