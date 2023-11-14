@@ -29,7 +29,7 @@ char *allchrptr(int size, int extra)
 {
 	char *allocated;
 
-	allocated = malloc(sizeof(char) * size + extra);
+	allocated = malloc(sizeof(char) * (size + extra));
 	if (!allocated)
 	{
 		perror("Error: Memory allocation error");
@@ -49,6 +49,7 @@ int main(int argc, char **argv)
 {
 	char *inputptr = NULL, *copy_inputptr, *token = NULL;
 	const char *delim = " \n";
+	char **new_argv;
 	int num_tok = 0, xtra;
 	bool receive_cmd = true, other_cmd = false;
 	size_t x = 0;
@@ -75,13 +76,13 @@ int main(int argc, char **argv)
 		/* use strtok function*/
 		num_tok = get_argc(token, inputptr, delim);
 		/* alocate a memory that point to token pointers*/
-		xtra = 1;
+		xtra = 0;
 		argv = dal_chrptr((int)num_tok, xtra);
-		argv = arr_argv((char **)argv, token, (char *)copy_inputptr);
-		_execmd(argv);
+		new_argv = arr_argv((char **)argv, token, (char *)copy_inputptr);
+		_execmd(new_argv);
 
-		free_dylloc(argv, num_tok);
+		free_dylloc(new_argv, num_tok);
+		free(inputptr);
 	}
-	free(inputptr);
 	return (0);
 }

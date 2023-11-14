@@ -15,16 +15,16 @@ char *_get_cpath(char *cmd)
 	pth = getenv("PATH");
 	if (pth)
 	{
-		pth_copy = strdup(pth);
+		pth_copy = _strdup(pth);
 		/* Get lengt of the command that as passed */
-		cmd_len = strlen(cmd);
+		cmd_len = _strlen(cmd);
 		/*down the path variable and get all the directory available*/
 		pth_token = strtok(pth_copy, ":");
 		while (pth_token != NULL)
 		{
 			dir_len = _strlen(pth_token);
 			file_pth = malloc(cmd_len + dir_len + 2);
-			strcpy(file_pth, pth_token);
+			_strcpy(file_pth, pth_token);
 			_strcat(file_pth, "/");
 			_strcat(file_pth, cmd);
 			_strcat(file_pth, "\0");

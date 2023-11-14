@@ -17,11 +17,11 @@ void _execmd(char **argv)
 	{
 		cmd = (char *)argv[0];
 		a_cmd = _get_cpath(cmd);
-		_printf("%s\n", a_cmd);
 
 		baby_pid = fork();
 		if (baby_pid == -1)
 		{
+			free(a_cmd);
 			perror("Child forking Error");
 			exit(EXIT_FAILURE);
 		}
