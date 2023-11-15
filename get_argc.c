@@ -21,7 +21,8 @@ int get_argc(char *token, char *inputptr, const char *delim)
 			num_tok++;
 			token = strtok(NULL, delim);
 		}
-
+		free(inputptr);
+		inputptr = NULL;
 		return (num_tok);
 }
 

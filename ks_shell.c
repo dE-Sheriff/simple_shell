@@ -70,19 +70,21 @@ int main(int argc, char **argv)
 		if (inputptr[num_charrd - 1] == '\n')
 			inputptr[num_charrd - 1] = '\0';
 
-		xtra = 1;
+		xtra = 0;
 		copy_inputptr = allchrptr((int) num_charrd, xtra);
 		strcpy(copy_inputptr, inputptr);
-		/* use strtok function*/
+
 		num_tok = get_argc(token, inputptr, delim);
-		/* alocate a memory that point to token pointers*/
 		xtra = 0;
 		argv = dal_chrptr((int)num_tok, xtra);
 		new_argv = arr_argv((char **)argv, token, (char *)copy_inputptr);
+		if (((char *)argv[0] != NULL) && _strcmp((char *)argv[0], "exit") == 0)
+		{
+			free_dylloc(new_argv, num_tok);
+			exit(0);
+		}
 		_execmd(new_argv);
-
 		free_dylloc(new_argv, num_tok);
-		free(inputptr);
 	}
 	return (0);
 }
