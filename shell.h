@@ -2,6 +2,7 @@
 #define SHELL_H
 #define _GNU_SOURCE
 
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -12,6 +13,8 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <sys/wait.h>
+
+extern char **environ;
 
 char *allchrptr(int size, int extra);
 int get_argc(char *token, char *inputptr, const char *delim);

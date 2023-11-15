@@ -8,7 +8,6 @@
 
 char *_getenv(const char *name)
 {
-	extern char **environ;
 	int i = 0;
 	char *env_token;
 
