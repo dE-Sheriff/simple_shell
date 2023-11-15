@@ -72,7 +72,7 @@ int main(int argc, char **argv)
 
 		xtra = 0;
 		copy_inputptr = allchrptr((int) num_charrd, xtra);
-		strcpy(copy_inputptr, inputptr);
+		_strcpy(copy_inputptr, inputptr);
 
 		num_tok = get_argc(token, inputptr, delim);
 		xtra = 0;
