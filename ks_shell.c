@@ -51,15 +51,13 @@ int main(int argc, char **argv)
 	const char *delim = " \n";
 	char **new_argv;
 	int num_tok = 0, xtra;
-	bool receive_cmd = true, other_cmd = false;
+	bool receive_cmd = true, interactive = true;
 	size_t x = 0;
 	ssize_t num_charrd;
 	(void)argc;
 
-	while (receive_cmd && !other_cmd)
+	while (receive_cmd && interactive)
 	{
-		if (isatty(STDIN_FILENO) == 0)
-			other_cmd = true;
 		print_promt();
 		num_charrd = getline(&inputptr, &x, stdin);
 		if (num_charrd == -1)
@@ -75,7 +73,7 @@ int main(int argc, char **argv)
 		_strcpy(copy_inputptr, inputptr);
 
 		num_tok = get_argc(token, inputptr, delim);
-		xtra = 0;
+		xtra = 1;
 		argv = dal_chrptr((int)num_tok, xtra);
 		new_argv = arr_argv((char **)argv, token, (char *)copy_inputptr);
 		if (((char *)argv[0] != NULL) && _strcmp((char *)argv[0], "exit") == 0)

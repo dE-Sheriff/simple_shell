@@ -31,7 +31,6 @@ int _strlen(char *s);
 int _putchar(char c);
 void _chckarg(const char *format, int char_len, va_list arg_list);
 char **arr_argv(char **argv, char *token, char *copy_inputptr);
-int print_int(va_list a_list);
 char *_getenv(const char *name);
 char *_get_cpath(char *cmd);
 

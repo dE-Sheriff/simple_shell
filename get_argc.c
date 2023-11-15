@@ -47,7 +47,6 @@ char **arr_argv(char **argv, char *token, char *copy_inputptr)
 		_strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
-	argv[i] = NULL;
 
 	free(copy_inputptr);
 	return (argv);

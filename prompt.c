@@ -7,5 +7,6 @@
 
 void print_promt(void)
 {
-	_printf("ks_shell$ ");
+	if (isatty(STDIN_FILENO) == 1)
+		_printf("ks_shell$ ");
 }

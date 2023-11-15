@@ -16,5 +16,6 @@ void free_dylloc(char **pptr, int num_tem)
 	{
 		free(pptr[x]);
 	}
-	free(pptr);
+	if (pptr)
+		free(pptr);
 }
