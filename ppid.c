@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * main - PID
+ * _getppid - PID
  *
  * Return: Always 0.
  */
 
-int main(void)
+int _getppid(void)
 {
 	pid_t my_ppid;
 

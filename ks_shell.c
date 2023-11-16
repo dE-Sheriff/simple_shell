@@ -59,19 +59,19 @@ int main(int argc, char **argv)
 	while (receive_cmd && interactive)
 	{
 		print_promt();
-		num_charrd = getline(&inputptr, &x, stdin);
+		num_charrd = _getline(&inputptr, &x, stdin);
 		if (num_charrd == -1)
 		{
+			if (inputptr != NULL)
+				free(inputptr);
 			_printf("Exiting shell...\n");
 			exit(EXIT_FAILURE);
 		}
 		if (inputptr[num_charrd - 1] == '\n')
 			inputptr[num_charrd - 1] = '\0';
-
 		xtra = 0;
 		copy_inputptr = allchrptr((int) num_charrd, xtra);
 		_strcpy(copy_inputptr, inputptr);
-
 		num_tok = get_argc(token, inputptr, delim);
 		xtra = 1;
 		argv = dal_chrptr((int)num_tok, xtra);
@@ -83,6 +83,7 @@ int main(int argc, char **argv)
 		}
 		_execmd(new_argv);
 		free_dylloc(new_argv, num_tok);
+		free(inputptr);
 	}
 	return (0);
 }

@@ -21,7 +21,8 @@ void _execmd(char **argv)
 		baby_pid = fork();
 		if (baby_pid == -1)
 		{
-			free(a_cmd);
+			if (a_cmd)
+				free(a_cmd);
 			perror("Child forking Error");
 			exit(EXIT_FAILURE);
 		}
@@ -36,5 +37,6 @@ void _execmd(char **argv)
 			wait(NULL);
 		}
 	}
-	free(a_cmd);
+	if (a_cmd)
+		free(a_cmd);
 }

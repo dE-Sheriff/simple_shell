@@ -21,8 +21,7 @@ int get_argc(char *token, char *inputptr, const char *delim)
 			num_tok++;
 			token = strtok(NULL, delim);
 		}
-		free(inputptr);
-		inputptr = NULL;
+
 		return (num_tok);
 }
 
@@ -48,6 +47,7 @@ char **arr_argv(char **argv, char *token, char *copy_inputptr)
 		token = strtok(NULL, delim);
 	}
 
-	free(copy_inputptr);
+	if (copy_inputptr)
+		free(copy_inputptr);
 	return (argv);
 }

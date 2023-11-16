@@ -16,6 +16,7 @@
 
 extern char **environ;
 
+ssize_t _getline(char **line, size_t *n, FILE *stream);
 char *allchrptr(int size, int extra);
 int get_argc(char *token, char *inputptr, const char *delim);
 char *_strcat(char *dest, char *src);
@@ -33,5 +34,7 @@ void _chckarg(const char *format, int char_len, va_list arg_list);
 char **arr_argv(char **argv, char *token, char *copy_inputptr);
 char *_getenv(const char *name);
 char *_get_cpath(char *cmd);
+int _getppid(void);
+int _getpid(void);
 
 #endif /* SHELL_H */

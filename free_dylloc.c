@@ -12,6 +12,10 @@ void free_dylloc(char **pptr, int num_tem)
 {
 	int x;
 
+	if (pptr == NULL)
+	{
+		return;
+	}
 	for (x = 0; x < num_tem; x++)
 	{
 		free(pptr[x]);
